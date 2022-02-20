@@ -72,11 +72,11 @@ const Util = {
    * @returns {object}
    */
   // eslint-disable-next-line object-curly-newline
-  assignOrUpdateKeyValuePair: (obj = {}, newKey) => !_.isEmpty(obj) && Object.keys(obj)?.find(key => key === newKey)
+  assignOrUpdateKeyValuePair: (obj = {}, newKey) => !_.isEmpty(obj) && Object.keys(obj)?.find(key => key.toString() === newKey.toString())
   // if object is not empty and contain the given key
     ? Object.fromEntries(Object.entries(obj).map(([key, value]) => {
       // increase number for this key
-      if (key === newKey) { return [key, value + 1]; }
+      if (key.toString() === newKey.toString()) { return [key, value + 1]; }
       return [key, value];
     }))
   // assign new object
@@ -129,7 +129,7 @@ const Util = {
       minTemp: minTemp ? Math.min(minTemp, averageMinTemp) : averageMinTemp,
       maxTemp: maxTemp ? Math.max(maxTemp, averageMaxTemp) : averageMaxTemp,
       meanValue: meanValue ? Util.getAverageValue(meanValue, temp) : temp,
-      modeValue: Util.assignOrUpdateKeyValuePair(modeValue, Math.round(temp)),
+      modeValue: Util.assignOrUpdateKeyValuePair(modeValue, Math.round(temp).toString()),
     });
   },
 };
