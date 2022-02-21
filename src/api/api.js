@@ -11,8 +11,9 @@ export const getSearchOptions = async (value) => {
     return options;
   } catch (error) {
     console.error(error);
-    throw error;
   }
+
+  return [];
 };
 
 export const getWeatherData = async (location) => {
@@ -26,6 +27,7 @@ export const getWeatherData = async (location) => {
     return data;
   } catch (error) {
     console.error(error);
-    throw error;
   }
+
+  return [];
 };
